@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Forms in Spring</title>
+</head>
+<body>
+    <h1 th:text="${title}"></h1>
+    <form th:action="@{/form}" method="post">
+        <div>
+            <label for="username"> Username </label>
+            <div>
+                <input type="text" name="username" id="username" placeholder="Username" autocomplete="off">
+            </div>
+        </div>
+        <div>
+            <label for="password"> Password </label>
+            <div>
+                <input type="password" name="password" id="password" placeholder="Password" autocomplete="off">
+            </div>
+        </div>
+        <div>
+            <label for="email"> Email </label>
+            <div>
+                <input type="email" name="email" id="email" placeholder="Email" autocomplete="off">
+            </div>
+        </div>
+        <div>
+            <div>
+                <input type="submit" value="Save">
+            </div>
+        </div>
+
+
+    </form>
+</body>
+</html>
