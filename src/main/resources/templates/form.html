@@ -6,29 +6,42 @@
 </head>
 <body>
     <h1 th:text="${title}"></h1>
-    <form th:action="@{/form}" method="post">
+    <form th:action="@{/form}" th:object="${user}" method="post">
         <div>
             <label for="username"> Username </label>
             <div>
-                <input type="text" name="username" id="username" placeholder="Username" autocomplete="off">
+                <!-- th:value="${user.username}" shows values after validation and refresh
+                       th:filed="*{field}" maps object. & add name, value attribute.
+                -->
+                <input type="text" id="username" placeholder="Username" th:field="*{username}" autocomplete="off">
+            </div>
+            <div th:if="${#fields.hasErrors('username')}"
+                th:errors="*{username}">
             </div>
         </div>
         <div>
             <label for="password"> Password </label>
             <div>
-                <input type="password" name="password" id="password" placeholder="Password" autocomplete="off">
+                <input type="password" th:field="*{password}" id="password" placeholder="Password" autocomplete="off">
+            </div>
+            <div th:if="${#fields.hasErrors('password')}"
+                 th:errors="*{password}">
             </div>
         </div>
         <div>
             <label for="email"> Email </label>
             <div>
-                <input type="email" name="email" id="email" placeholder="Email" autocomplete="off">
+                <input type="email" th:field="*{email}" id="email" placeholder="Email" autocomplete="off">
+            </div>
+            <div th:if="${#fields.hasErrors('email')}"
+                 th:errors="*{email}">
             </div>
         </div>
         <div>
             <div>
                 <input type="submit" value="Save">
             </div>
+
         </div>
 
 

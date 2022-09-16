@@ -1,8 +1,14 @@
 package com.company.springboot.app.springbootform.models.domain;
 
+import javax.validation.constraints.NotEmpty;
+
 public class User {
+    // Validation Rules
+    @NotEmpty(message = "Username is required")
     private String username;
+    @NotEmpty(message = "Password is required")
     private String password;
+    @NotEmpty(message = "Email is required")
     private String email;
 
     public String getUsername() {
