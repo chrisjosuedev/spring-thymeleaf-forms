@@ -6,12 +6,16 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.Map;
 
 @Controller
+// Keep Default Values
+@SessionAttributes("user")
 public class FormController {
 
 
@@ -19,13 +23,16 @@ public class FormController {
     @GetMapping("/form")
     public String form(Model model) {
         User user = new User();
+        user.setName("John");
+        user.setLastName("Doe");
+        user.setDni("03091999000084");
         model.addAttribute("title", "Forms with Thymeleaf");
         model.addAttribute("user", user);
         return "form";
     }
 
     @PostMapping("/form")
-    public String processForm(@Valid User user, BindingResult result, Model model/*
+    public String processForm(@Valid User user, BindingResult result, Model model, SessionStatus status/*
                               @RequestParam String username,
                               @RequestParam String password,
                               @RequestParam String email */) {
@@ -55,6 +62,10 @@ public class FormController {
         }
 
         model.addAttribute("user", user);
+
+        // Complete Session Value
+        status.setComplete();
+
         return "result";
 
     }
