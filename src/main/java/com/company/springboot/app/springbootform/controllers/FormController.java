@@ -22,6 +22,7 @@ public class FormController {
 
     @GetMapping("/form")
     public String form(Model model) {
+        /***************** Send to view to Errors Validations, IMPORTANT! *********************/
         User user = new User();
         user.setName("John");
         user.setLastName("Doe");
